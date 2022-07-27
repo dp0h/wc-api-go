@@ -2,10 +2,10 @@ package net
 
 import (
 	"errors"
+	"github.com/dp0h/wc-api-go/options"
+	"github.com/dp0h/wc-api-go/request"
+	"github.com/dp0h/wc-api-go/test"
 	"github.com/stretchr/testify/assert"
-	"github.com/tgglv/wc-api-go/options"
-	"github.com/tgglv/wc-api-go/request"
-	"github.com/tgglv/wc-api-go/test"
 	"net/url"
 	"testing"
 )

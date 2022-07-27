@@ -1,8 +1,8 @@
-package auth // import "github.com/tgglv/wc-api-go/auth"
+package auth
 
 import (
-	"github.com/tgglv/wc-api-go/options"
-	"github.com/tgglv/wc-api-go/request"
+	"github.com/dp0h/wc-api-go/options"
+	"github.com/dp0h/wc-api-go/request"
 	"net/http"
 	"net/url"
 	"strings"
