@@ -21,20 +21,22 @@ func (c *Client) Get(endpoint string, parameters url.Values) (*http.Response, er
 }
 
 // Post Method usually creates new instances
-func (c *Client) Post(endpoint string, data url.Values) (*http.Response, error) {
+func (c *Client) Post(endpoint string, parameters url.Values, body string) (*http.Response, error) {
 	return c.sender.Send(request.Request{
 		Method:   "POST",
 		Endpoint: endpoint,
-		Values:   data,
+		Values:   parameters,
+		Body:     body,
 	})
 }
 
 // Put Method usually update existing instances
-func (c *Client) Put(endpoint string, data url.Values) (*http.Response, error) {
+func (c *Client) Put(endpoint string, parameters url.Values, body string) (*http.Response, error) {
 	return c.sender.Send(request.Request{
 		Method:   "PUT",
 		Endpoint: endpoint,
-		Values:   data,
+		Values:   parameters,
+		Body:     body,
 	})
 }
 
@@ -52,6 +54,5 @@ func (c *Client) Options(endpoint string) (*http.Response, error) {
 	return c.sender.Send(request.Request{
 		Method:   "OPTIONS",
 		Endpoint: endpoint,
-		Values:   nil,
 	})
 }

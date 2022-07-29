@@ -156,5 +156,6 @@ func main() {
 
 ## Release History
 
+- 2022-07-29 - 1.0.2 - Fixed Post with body
 - 2019-04-14 - 1.0.1 - Fix sample integration setup in README.md
 - 2019-01-12 - 1.0.0 - First Release

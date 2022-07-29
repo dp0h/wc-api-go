@@ -3,6 +3,7 @@ package net
 import (
 	"github.com/dp0h/wc-api-go/request"
 	"net/http"
+	"strings"
 )
 
 // Sender provides HTTP Requests
@@ -21,9 +22,17 @@ func (s *Sender) Send(req request.Request) (resp *http.Response, err error) {
 
 func (s *Sender) prepareRequest(req request.Request) *http.Request {
 	URL := s.urlBuilder.GetURL(req)
-	request, _ := s.requestCreator.NewRequest(req.Method, URL, nil)
+	hasBody := ("POST" == req.Method || "PUT" == req.Method) && len(req.Body) > 0
+	var request *http.Request
+	if hasBody {
+		reader := strings.NewReader(req.Body)
+		request, _ = s.requestCreator.NewRequest(req.Method, URL, reader)
+		request.Header.Add("Content-type", "application/json")
+	} else {
+		request, _ = s.requestCreator.NewRequest(req.Method, URL, nil)
+	}
 	s.requestEnricher.EnrichRequest(request, URL)
-	if req.Values != nil && ("POST" == req.Method || "PUT" == req.Method) {
+	if req.Values != nil {
 		request.Form = req.Values
 	}
 	return request
