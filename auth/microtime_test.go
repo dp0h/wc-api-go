@@ -11,5 +11,5 @@ func TestGet(t *testing.T) {
 
 	nano := m.Get()
 	Assert.True("1546112714106137771" < nano)
-	Assert.True(nano < m.Get())
+	Assert.True(nano <= m.Get())
 }

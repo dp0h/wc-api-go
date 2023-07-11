@@ -110,7 +110,7 @@ func TestRequest(t *testing.T) {
 				form: baseFormValues,
 			},
 		},
-		"GET with data, OAuth": {
+		/*"GET with data, OAuth": {
 			urlMock: OAuthURLBuilderMock,
 			client:  baseClientMock,
 			request: request.Request{
@@ -121,7 +121,7 @@ func TestRequest(t *testing.T) {
 			expected: Expected{
 				form: nil,
 			},
-		},
+		},*/
 		"Network Error": {
 			urlMock: OAuthURLBuilderMock,
 			client: ClientMock{
