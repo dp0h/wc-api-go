@@ -1,6 +1,7 @@
 package client
 
 import (
+	"crypto/tls"
 	"github.com/dp0h/wc-api-go/auth"
 	"github.com/dp0h/wc-api-go/net"
 	"github.com/dp0h/wc-api-go/options"
@@ -29,7 +30,8 @@ func (f *Factory) NewClient(o options.Basic) Client {
 
 // NewSender method creates new Sender
 func (f *Factory) NewSender(u url.Builder, o options.Basic) net.Sender {
-	httpClient := http.Client{}
+	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
+	httpClient := http.Client{Transport: tr}
 	requestCreator := f.NewRequestCreator()
 	requestEnricher := f.NewAuthenticator(o)
 
