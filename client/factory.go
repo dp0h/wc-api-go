@@ -6,6 +6,7 @@ import (
 	"github.com/dp0h/wc-api-go/options"
 	"github.com/dp0h/wc-api-go/url"
 	"net/http"
+	"time"
 )
 
 // Factory Structure
@@ -29,7 +30,8 @@ func (f *Factory) NewClient(o options.Basic) Client {
 
 // NewSender method creates new Sender
 func (f *Factory) NewSender(u url.Builder, o options.Basic) net.Sender {
-	httpClient := http.Client{}
+	// Without a timeout a request to a store that stops answering never returns.
+	httpClient := http.Client{Timeout: time.Duration(o.Timeout()) * time.Second}
 	requestCreator := f.NewRequestCreator()
 	requestEnricher := f.NewAuthenticator(o)
 
